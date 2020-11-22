@@ -1,0 +1,12 @@
+spring:
+  main:
+    log-startup-info: true
+    banner-mode: console
+  output:
+    ansi:
+      enabled: always
+  data:
+      mongodb:
+        uri: ${MONGO:mongodb://localhost:27017/micro-petri}
+server:
+  port: 8111

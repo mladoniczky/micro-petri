@@ -1,0 +1,9 @@
+spring:
+  main:
+    log-startup-info: true
+    banner-mode: console
+  output:
+    ansi:
+      enabled: always
+server:
+  port: 8222
