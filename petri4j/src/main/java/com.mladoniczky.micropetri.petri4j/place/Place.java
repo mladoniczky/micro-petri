@@ -5,7 +5,6 @@ import com.mladoniczky.micropetri.petri4j.arc.output.OutputArc;
 import com.mladoniczky.micropetri.petri4j.generic.Node;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.springframework.data.annotation.Transient;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,9 +14,7 @@ import java.util.Map;
 public class Place extends Node {
 
     private Long resources;
-    @Transient
     private Map<String, OutputArc> inputArcs;
-    @Transient
     private Map<String, InputArc> outputArcs;
 
     public Place() {

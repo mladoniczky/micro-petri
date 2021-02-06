@@ -15,6 +15,7 @@ public abstract class Arc<T extends Node, R extends Node> {
     }
 
     public Arc(String id, ArcType type, T source, R target) {
+        this();
         this.id = id;
         this.type = type;
         this.source = source;

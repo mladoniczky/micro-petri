@@ -1,6 +1,7 @@
-package com.mladoniczky.micropetri.net.service;
+package com.mladoniczky.micropetri.net.service.export;
 
-import com.mladoniczky.micropetri.petri4j.Net;
+
+import com.mladoniczky.micropetri.net.model.Net;
 import com.mladoniczky.micropetri.petri4j.arc.ArcType;
 import com.mladoniczky.micropetri.net.web.model.Arc;
 import com.mladoniczky.micropetri.net.web.model.NetResource;

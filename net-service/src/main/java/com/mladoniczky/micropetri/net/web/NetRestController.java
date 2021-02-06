@@ -1,8 +1,8 @@
 package com.mladoniczky.micropetri.net.web;
 
-import com.mladoniczky.micropetri.petri4j.Net;
-import com.mladoniczky.micropetri.net.service.IExportService;
-import com.mladoniczky.micropetri.net.service.IImportService;
+import com.mladoniczky.micropetri.net.model.Net;
+import com.mladoniczky.micropetri.net.service.export.IExportService;
+import com.mladoniczky.micropetri.net.service.imports.IImportService;
 import com.mladoniczky.micropetri.net.service.INetService;
 import com.mladoniczky.micropetri.net.web.model.NetResource;
 import org.springframework.data.domain.Page;
@@ -15,13 +15,13 @@ import java.util.Arrays;
 
 @RestController
 @RequestMapping("/api/net")
-public class NetController {
+public class NetRestController {
 
     private final INetService netService;
     private final IImportService importService;
     private final IExportService exportService;
 
-    public NetController(INetService netService, IImportService importService, IExportService exportService) {
+    public NetRestController(INetService netService, IImportService importService, IExportService exportService) {
         this.netService = netService;
         this.importService = importService;
         this.exportService = exportService;
@@ -53,7 +53,7 @@ public class NetController {
         return exportService.export(netService.save(importService.importNet(net)));
     }
 
-    @PostMapping("/{id}")
+    @PutMapping("/{id}")
     public NetResource updateNet(@PathVariable String id, @RequestBody @Valid NetResource net) throws InterruptedException {
         net.setId(id);
         return exportService.export(netService.update(importService.importNet(net)));

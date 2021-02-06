@@ -7,7 +7,6 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Setter;
-import org.springframework.data.annotation.Transient;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,9 +17,7 @@ public class Transition extends Node {
 
     @Setter(AccessLevel.NONE)
     private TransitionState state;
-    @Transient
     private Map<String, InputArc> inputArcs;
-    @Transient
     private Map<String, OutputArc> outputArc;
 
     public Transition() {

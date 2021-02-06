@@ -8,18 +8,20 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class RegularInputArc extends InputArc {
-
-    private Long weight;
+public class RegularInputArc extends WeightedInputArc {
 
     public RegularInputArc() {
-        weight = 1L;
-        type = ArcType.REGULAR;
+        super();
+        this.type = ArcType.REGULAR;
+    }
+
+    public RegularInputArc(Long weight) {
+        super(weight);
+        this.type = ArcType.REGULAR;
     }
 
     public RegularInputArc(String id, Place source, Transition target, Long weight) {
-        super(id, ArcType.REGULAR, source, target);
-        this.weight = weight;
+        super(id, ArcType.REGULAR, source, target, weight);
     }
 
     @Override

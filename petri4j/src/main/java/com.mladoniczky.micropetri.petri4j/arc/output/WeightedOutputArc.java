@@ -1,6 +1,5 @@
 package com.mladoniczky.micropetri.petri4j.arc.output;
 
-import com.mladoniczky.micropetri.petri4j.arc.Arc;
 import com.mladoniczky.micropetri.petri4j.arc.ArcType;
 import com.mladoniczky.micropetri.petri4j.place.Place;
 import com.mladoniczky.micropetri.petri4j.transition.Transition;
@@ -9,13 +8,22 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public abstract class OutputArc extends Arc<Transition, Place> {
+public abstract class WeightedOutputArc extends OutputArc {
 
-    public OutputArc() {
+    protected Long weight;
+
+    public WeightedOutputArc() {
         super();
+        this.weight = 1L;
     }
 
-    public OutputArc(String id, ArcType type, Transition source, Place target) {
+    public WeightedOutputArc(Long weight) {
+        super();
+        this.weight = weight;
+    }
+
+    public WeightedOutputArc(String id, ArcType type, Transition source, Place target, Long weight) {
         super(id, type, source, target);
+        this.weight = weight;
     }
 }

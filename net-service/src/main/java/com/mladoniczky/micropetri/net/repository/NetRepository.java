@@ -1,6 +1,6 @@
 package com.mladoniczky.micropetri.net.repository;
 
-import com.mladoniczky.micropetri.petri4j.Net;
+import com.mladoniczky.micropetri.net.model.Net;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;

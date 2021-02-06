@@ -4,20 +4,24 @@ import com.mladoniczky.micropetri.petri4j.arc.ArcType;
 import com.mladoniczky.micropetri.petri4j.place.Place;
 import com.mladoniczky.micropetri.petri4j.transition.Transition;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class InhibitorArc extends InputArc {
-
-    private Long weight;
+public class InhibitorArc extends WeightedInputArc {
 
     public InhibitorArc() {
-        weight = 1L;
-        type = ArcType.INHIBITOR;
+        super();
+        this.type = ArcType.INHIBITOR;
+    }
+
+    public InhibitorArc(Long weight) {
+        super(weight);
+        this.type = ArcType.INHIBITOR;
     }
 
     public InhibitorArc(String id, Place source, Transition target, Long weight) {
-        super(id, ArcType.INHIBITOR, source, target);
-        this.weight = weight;
+        super(id, ArcType.INHIBITOR, source, target, weight);
     }
 
     @Override
@@ -27,6 +31,6 @@ public class InhibitorArc extends InputArc {
 
     @Override
     public void moveResources() {
-        // nothing
+        // do nothing
     }
 }

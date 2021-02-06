@@ -8,18 +8,20 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class RegularOutputArc extends OutputArc {
-
-    private Long weight;
+public class RegularOutputArc extends WeightedOutputArc {
 
     public RegularOutputArc() {
-        weight = 1L;
+        super();
+        type = ArcType.REGULAR;
+    }
+
+    public RegularOutputArc(Long weight) {
+        super(weight);
         type = ArcType.REGULAR;
     }
 
     public RegularOutputArc(String id, Transition source, Place target, Long weight) {
-        super(id, ArcType.REGULAR, source, target);
-        this.weight = weight;
+        super(id, ArcType.REGULAR, source, target, weight);
     }
 
     @Override

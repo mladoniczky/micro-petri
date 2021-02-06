@@ -1,13 +1,16 @@
-package com.mladoniczky.micropetri.net.service;
+package com.mladoniczky.micropetri.net.service.imports;
 
-import com.mladoniczky.micropetri.petri4j.Net;
-import com.mladoniczky.micropetri.petri4j.arc.input.InhibitorArc;
-import com.mladoniczky.micropetri.petri4j.arc.input.RegularInputArc;
-import com.mladoniczky.micropetri.petri4j.arc.output.RegularOutputArc;
+
+import com.mladoniczky.micropetri.net.model.Net;
 import com.mladoniczky.micropetri.net.web.model.Arc;
 import com.mladoniczky.micropetri.net.web.model.NetResource;
 import com.mladoniczky.micropetri.net.web.model.Place;
 import com.mladoniczky.micropetri.net.web.model.Transition;
+import com.mladoniczky.micropetri.petri4j.arc.input.InhibitorArc;
+import com.mladoniczky.micropetri.petri4j.arc.input.ReadArc;
+import com.mladoniczky.micropetri.petri4j.arc.input.RegularInputArc;
+import com.mladoniczky.micropetri.petri4j.arc.input.ResetArc;
+import com.mladoniczky.micropetri.petri4j.arc.output.RegularOutputArc;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.ExecutorService;
@@ -24,7 +27,6 @@ public class ImportService implements IImportService {
             return null;
 
         Net net = new Net(netResource.getName());
-        net.setId(netResource.getId());
 
         ExecutorService executorService = Executors.newFixedThreadPool(2);
 
@@ -76,8 +78,19 @@ public class ImportService implements IImportService {
                         net.getTransitions().get(a.getTarget()),
                         a.getWeight().longValue());
             case RESET:
+                if (isOutput)
+                    throw new IllegalArgumentException("Reset arc " + a.getId() + " cannot be output arc!");
+                return new ResetArc(a.getId(),
+                        net.getPlaces().get(a.getSource()),
+                        net.getTransitions().get(a.getTarget()));
             case READ:
-                throw new UnsupportedOperationException("Arc type " + a.getType() + " is not supported,yet.");
+                //throw new UnsupportedOperationException("Arc type " + a.getType() + " is not supported,yet.");
+                if (isOutput)
+                    throw new IllegalArgumentException("Read arc " + a.getId() + " cannot be output arc!");
+                return new ReadArc(a.getId(),
+                        net.getPlaces().get(a.getSource()),
+                        net.getTransitions().get(a.getTarget()),
+                        a.getWeight().longValue());
             default:
                 throw new IllegalArgumentException("Cannot find arc of type " + a.getType());
         }

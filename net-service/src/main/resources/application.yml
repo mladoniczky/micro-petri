@@ -7,6 +7,6 @@ spring:
       enabled: always
   data:
       mongodb:
-        uri: ${MONGO:mongodb://localhost:27017/micro-petri}
+        uri: ${MONGO}
 server:
   port: 8111

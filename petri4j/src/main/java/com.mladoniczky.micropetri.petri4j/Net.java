@@ -8,10 +8,6 @@ import com.mladoniczky.micropetri.petri4j.transition.Transition;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
-import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.HashMap;
 import java.util.List;
@@ -19,18 +15,14 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Data
-@Document
 public class Net {
 
-    @Id
-    private ObjectId id;
     private String name;
 
     private Map<String, Place> places;
     private Map<String, Transition> transitions;
     private Map<String, Arc> arcs;
 
-    @Transient
     @Setter(AccessLevel.NONE)
     private boolean executable;
 
@@ -56,14 +48,6 @@ public class Net {
 
     public void addPlace(Place place) {
         places.put(place.getId(), place);
-    }
-
-    public String getStringId() {
-        return id.toString();
-    }
-
-    public void setId(String id) {
-        this.id = new ObjectId(id);
     }
 
     public long[] getMarking() {
