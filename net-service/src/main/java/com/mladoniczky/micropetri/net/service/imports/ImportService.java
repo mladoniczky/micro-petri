@@ -11,6 +11,7 @@ import com.mladoniczky.micropetri.petri4j.arc.input.ReadArc;
 import com.mladoniczky.micropetri.petri4j.arc.input.RegularInputArc;
 import com.mladoniczky.micropetri.petri4j.arc.input.ResetArc;
 import com.mladoniczky.micropetri.petri4j.arc.output.RegularOutputArc;
+import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.ExecutorService;
@@ -49,6 +50,8 @@ public class ImportService implements IImportService {
                 .collect(Collectors.toMap(Arc::getId, (Arc a) -> createArc(a, net))));
 
         net.makeExecutable();
+        if (netResource.getId() != null && netResource.getId().length() > 0)
+            net.setId(new ObjectId(netResource.getId()));
         return net;
     }
 

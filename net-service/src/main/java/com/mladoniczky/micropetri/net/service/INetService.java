@@ -12,11 +12,17 @@ public interface INetService {
 
     Net update(Net net);
 
+    Net patch(Net net);
+
     boolean delete(String id);
+
+    boolean deleteAll();
 
     Optional<Net> getNet(String id);
 
     List<Net> getNets(Iterable<String> ids);
 
     Page<Net> getNets(String name, Pageable pageable);
+
+    Page<Net> getAllNets(Pageable pageable);
 }

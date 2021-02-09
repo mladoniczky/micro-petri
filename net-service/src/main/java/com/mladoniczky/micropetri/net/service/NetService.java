@@ -28,17 +28,33 @@ public class NetService implements INetService {
 
     @Override
     public Net update(Net net) {
-        if (net.getId() == null)
-            throw new IllegalArgumentException("Net " + net.getName() + " has not defined id!");
-        if (!repository.existsById(net.getStringId()))
-            throw new IllegalArgumentException("Net [" + net.getStringId() + "] " + net.getName() + " was not found!");
+        if (net.getId() == null || !repository.existsById(net.getStringId()))
+            throw new IllegalArgumentException("Provided net has not been found!");
+//        if (net.getId() == null)
+//            throw new IllegalArgumentException("Net " + net.getName() + " has not defined id!");
+//        if (!repository.existsById(net.getStringId()))
+//            throw new IllegalArgumentException("Net [" + net.getStringId() + "] " + net.getName() + " was not found!");
         return repository.save(net);
+    }
+
+    @Override
+    public Net patch(Net net) {
+        if (net.getId() == null || !repository.existsById(net.getStringId()))
+            throw new IllegalArgumentException("Provided net has not been found!");
+        // TODO partial update
+        return null;
     }
 
     @Override
     public boolean delete(String id) {
         repository.deleteById(id);
         return !repository.existsById(id);
+    }
+
+    @Override
+    public boolean deleteAll() {
+        repository.deleteAll();
+        return repository.count() == 0L;
     }
 
     @Override
@@ -54,6 +70,11 @@ public class NetService implements INetService {
     @Override
     public Page<Net> getNets(String name, Pageable pageable) {
         return repository.findAllByName(name, pageable);
+    }
+
+    @Override
+    public Page<Net> getAllNets(Pageable pageable) {
+        return repository.findAll(pageable);
     }
 
 }
