@@ -93,4 +93,9 @@ public class Net {
         });
         executable = true;
     }
+
+    public void makeSerializable() {
+        transitions.forEach((k, t) -> t.makeSerializable());
+        places.forEach((k, p) -> p.makeSerializable());
+    }
 }

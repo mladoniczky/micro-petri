@@ -2,10 +2,10 @@ package com.mladoniczky.micropetri.net.service.imports;
 
 
 import com.mladoniczky.micropetri.net.model.Net;
-import com.mladoniczky.micropetri.net.web.model.Arc;
-import com.mladoniczky.micropetri.net.web.model.NetResource;
-import com.mladoniczky.micropetri.net.web.model.Place;
-import com.mladoniczky.micropetri.net.web.model.Transition;
+import com.mladoniczky.micropetri.net.web.resource.Arc;
+import com.mladoniczky.micropetri.net.web.resource.NetResource;
+import com.mladoniczky.micropetri.net.web.resource.Place;
+import com.mladoniczky.micropetri.net.web.resource.Transition;
 import com.mladoniczky.micropetri.petri4j.arc.input.InhibitorArc;
 import com.mladoniczky.micropetri.petri4j.arc.input.ReadArc;
 import com.mladoniczky.micropetri.petri4j.arc.input.RegularInputArc;
@@ -34,13 +34,13 @@ public class ImportService implements IImportService {
         executorService.execute(() -> {
             net.getPlaces().putAll(netResource.getPlaces().stream()
                     .collect(Collectors.toMap(Place::getId, (Place p) ->
-                            new com.mladoniczky.micropetri.petri4j.place.Place(p.getId(), p.getName(), p.getResources().longValue())
+                            new com.mladoniczky.micropetri.net.model.Place(p.getId(), p.getName(), p.getResources().longValue())
                     )));
         });
         executorService.execute(() -> {
             net.getTransitions().putAll(netResource.getTransitions().stream()
                     .collect(Collectors.toMap(Transition::getId, (Transition t) ->
-                            new com.mladoniczky.micropetri.petri4j.transition.Transition(t.getId(), t.getName()))));
+                            new com.mladoniczky.micropetri.net.model.Transition(t.getId(), t.getName()))));
         });
 
         executorService.shutdown();
@@ -49,7 +49,7 @@ public class ImportService implements IImportService {
         net.getArcs().putAll(netResource.getArcs().stream()
                 .collect(Collectors.toMap(Arc::getId, (Arc a) -> createArc(a, net))));
 
-        net.makeExecutable();
+//        net.makeExecutable();
         if (netResource.getId() != null && netResource.getId().length() > 0)
             net.setId(new ObjectId(netResource.getId()));
         return net;

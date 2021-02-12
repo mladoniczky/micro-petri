@@ -6,13 +6,16 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.index.CompoundIndex;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 
 @EqualsAndHashCode(callSuper = true)
-@Document
 @Data
+@Document
+@CompoundIndex(def = "{'name': 1}")
 public class Net extends com.mladoniczky.micropetri.petri4j.Net {
 
     @Id
@@ -41,4 +44,9 @@ public class Net extends com.mladoniczky.micropetri.petri4j.Net {
         return id.toHexString();
     }
 
+    @Override
+    @Transient
+    public boolean isExecutable() {
+        return super.isExecutable();
+    }
 }

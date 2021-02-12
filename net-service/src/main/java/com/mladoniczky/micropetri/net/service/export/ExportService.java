@@ -2,16 +2,17 @@ package com.mladoniczky.micropetri.net.service.export;
 
 
 import com.mladoniczky.micropetri.net.model.Net;
+import com.mladoniczky.micropetri.net.web.resource.Arc;
+import com.mladoniczky.micropetri.net.web.resource.NetResource;
+import com.mladoniczky.micropetri.net.web.resource.Place;
+import com.mladoniczky.micropetri.net.web.resource.Transition;
 import com.mladoniczky.micropetri.petri4j.arc.ArcType;
-import com.mladoniczky.micropetri.net.web.model.Arc;
-import com.mladoniczky.micropetri.net.web.model.NetResource;
-import com.mladoniczky.micropetri.net.web.model.Place;
-import com.mladoniczky.micropetri.net.web.model.Transition;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
@@ -24,7 +25,9 @@ public class ExportService implements IExportService {
 
     @Override
     public List<NetResource> export(Collection<Net> nets) throws InterruptedException {
-        ExecutorService executorService = Executors.newFixedThreadPool(nets.size());
+        if (nets.isEmpty())
+            return new ArrayList<>();
+        ExecutorService executorService = Executors.newFixedThreadPool(nets.size()); //TODO rozdeliť list na menšie a v každom threade spracovať viacero sietí
         List<Future<NetResource>> futureList = executorService.invokeAll(nets.stream()
                 .map(net -> (Callable<NetResource>) () -> export(net))
                 .collect(Collectors.toList()));

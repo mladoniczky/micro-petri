@@ -23,6 +23,8 @@ public class NetService implements INetService {
 
     @Override
     public Net save(Net net) {
+//        if (net.isExecutable())
+//            net.makeSerializable();
         return repository.save(net);
     }
 
@@ -34,7 +36,7 @@ public class NetService implements INetService {
 //            throw new IllegalArgumentException("Net " + net.getName() + " has not defined id!");
 //        if (!repository.existsById(net.getStringId()))
 //            throw new IllegalArgumentException("Net [" + net.getStringId() + "] " + net.getName() + " was not found!");
-        return repository.save(net);
+        return save(net);
     }
 
     @Override

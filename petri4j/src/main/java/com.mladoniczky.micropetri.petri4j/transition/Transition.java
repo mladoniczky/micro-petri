@@ -69,4 +69,9 @@ public class Transition extends Node {
         outputArc.forEach((id, arc) -> arc.moveResources());
         state = TransitionState.DISABLED;
     }
+
+    public void makeSerializable() {
+        inputArcs.clear();
+        outputArc.clear();
+    }
 }

@@ -49,4 +49,9 @@ public class Place extends Node {
     public void decrease(Long amount) {
         resources -= amount;
     }
+
+    public void makeSerializable() {
+        inputArcs.clear();
+        outputArcs.clear();
+    }
 }

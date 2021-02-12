@@ -4,7 +4,7 @@ import com.mladoniczky.micropetri.net.model.Net;
 import com.mladoniczky.micropetri.net.service.INetService;
 import com.mladoniczky.micropetri.net.service.export.IExportService;
 import com.mladoniczky.micropetri.net.service.imports.IImportService;
-import com.mladoniczky.micropetri.net.web.model.NetResource;
+import com.mladoniczky.micropetri.net.web.resource.NetResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
