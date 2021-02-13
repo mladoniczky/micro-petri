@@ -1,0 +1,25 @@
+spring:
+  main:
+    log-startup-info: true
+    banner-mode: console
+  output:
+    ansi:
+      enabled: always
+  cloud:
+    gateway:
+      actuator:
+        verbose:
+          enabled: true
+server:
+  port: 8080
+management:
+  endpoint:
+    gateway:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health, info, gateway
+
+micro-petri:
+  net-service: ${NET_SERVICE_URI}

@@ -5,15 +5,33 @@
 
     <groupId>com.mladoniczky</groupId>
     <artifactId>micro-petri</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>micro-petri</name>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>Micro-Petri</name>
     <description>Demo project for microservice architecture with petri net</description>
     <packaging>pom</packaging>
+
+    <properties>
+        <java.version>11</java.version>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
 
     <modules>
         <module>petri4j</module>
         <module>net-service</module>
-        <module>analysis-service</module>
+        <module>gateway</module>
+        <module>auth-service</module>
     </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.16</version>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
 
 </project>

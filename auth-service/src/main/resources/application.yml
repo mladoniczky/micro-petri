@@ -6,4 +6,4 @@ spring:
     ansi:
       enabled: always
 server:
-  port: 8222
+  port: 8081

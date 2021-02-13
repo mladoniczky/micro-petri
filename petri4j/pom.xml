@@ -7,26 +7,16 @@
     <artifactId>petri4j</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
-    <name>petri4j</name>
+    <name>Petri4J</name>
     <description>
         Library project for microservice architecture with Petri net to provided basic Petri net structure.
     </description>
 
-    <properties>
-        <java.version>11</java.version>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.16</version>
-            <optional>true</optional>
-        </dependency>
-    </dependencies>
+    <parent>
+        <groupId>com.mladoniczky</groupId>
+        <artifactId>micro-petri</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>..</relativePath>
+    </parent>
 
 </project>

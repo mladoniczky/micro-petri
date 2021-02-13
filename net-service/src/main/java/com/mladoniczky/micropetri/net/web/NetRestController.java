@@ -5,6 +5,7 @@ import com.mladoniczky.micropetri.net.service.INetService;
 import com.mladoniczky.micropetri.net.service.export.IExportService;
 import com.mladoniczky.micropetri.net.service.imports.IImportService;
 import com.mladoniczky.micropetri.net.web.resource.NetResource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -13,13 +14,14 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/api/nets")
+@RequestMapping("/nets")
 public class NetRestController {
 
     private final INetService netService;
     private final IImportService importService;
     private final IExportService exportService;
 
+    @Autowired
     public NetRestController(INetService netService, IImportService importService, IExportService exportService) {
         this.netService = netService;
         this.importService = importService;

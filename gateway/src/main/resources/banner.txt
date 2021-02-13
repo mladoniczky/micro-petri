@@ -1,0 +1,10 @@
+ ___ ___   __                                  _______           __            __
+ |   Y   | |__| .----. .----. .-----.  ______  |   _   | .-----. |  |_  .----. |__|
+ |.      | |  | |  __| |   _| |  _  | |______| |.  1   | |  -__| |   _| |   _| |  |
+ |. \_/  | |__| |____| |__|   |_____|          |.  ____| |_____| |____| |__|   |__|
+ |:  |   |                                     |:  |
+ |::.|:. |                                     |::.|
+ `--- ---'                                     `---'
+ ${AnsiColor.CYAN}:: ${application.title} ${application.formatted-version} ::
+ ${AnsiColor.GREEN}:: Spring Boot${spring-boot.formatted-version} ::
+ ${AnsiColor.DEFAULT}
